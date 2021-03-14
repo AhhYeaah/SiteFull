@@ -92,35 +92,51 @@
       }
     </script>
     <style>
-   @-webkit-keyframes spin { 
-        from { 
-            -webkit-transform: rotate(0deg); 
-        } to { 
-            -webkit-transform: rotate(90deg); 
-        }
-    }
 
-    .spining-opening{
+      /* CSS reset */
+      *{
+                  padding:0;
+                  margin:0;
+                  vertical-align:baseline;
+                  list-style:none;
+                  border:0;
+                  text-decoration: none;
+            }
 
-      -webkit-animation-name: spin;
-    -webkit-animation-duration: 150ms;
-    -webkit-animation-timing-function: linear;
-    }
+      /* Aqui é a animação das setinhas fechando e abrindo*/
+      /* Setinha abrindo    */
 
-    @-webkit-keyframes spin-close { 
-        from { 
-            -webkit-transform: rotate(90deg); 
-        } to { 
-            -webkit-transform: rotate(0deg); 
-        }
-    }
+      @-webkit-keyframes spin { 
+         from { 
+               -webkit-transform: rotate(0deg); 
+         } to { 
+               -webkit-transform: rotate(90deg); 
+         }
+      }
 
-    .spining-closing{
-      -webkit-animation-name: spin-close;
-    -webkit-animation-duration: 150ms;
-    -webkit-animation-timing-function: linear;
-    }
-   
+      .spining-opening{
+
+         -webkit-animation-name: spin;
+      -webkit-animation-duration: 150ms;
+      -webkit-animation-timing-function: linear;
+      }
+
+      /* Setinha fechando    */
+      @-webkit-keyframes spin-close { 
+         from { 
+               -webkit-transform: rotate(90deg); 
+         } to { 
+               -webkit-transform: rotate(0deg); 
+         }
+      }
+
+      .spining-closing{
+         -webkit-animation-name: spin-close;
+      -webkit-animation-duration: 150ms;
+      -webkit-animation-timing-function: linear;
+      }
+      /* Cor dos itens da .sidebar */
+
         .sidebar {
             color:#838383;
         }
@@ -129,26 +145,35 @@
            color: black;
         }
 
+      /* Aqui vai ser os estados das opçoes */
+      /* Aqui quando a opção esta ativa, ou seja, foi clicada */
 
         .nav-option-active{
             -webkit-user-select: none;
             color:#bbb;
         }
 
+      /* Aqui hover da posição clicada */
 
         .nav-option-active:hover{
             color:#bbb;
         }
+
+      /* Aqui quando a opção esta inativa */
 
         .nav-option{
             -webkit-user-select: none;
             color:#838383;
         }
 
+        /* Aqui hover da posição clicada */
+
         .nav-option:hover{
             color:#bbb;
             -webkit-transition: 0.5s
         }
+
+        /*wrapper pra fazer a sidebar dividir a tela com o main*/
 
         .wrapper{
             display: grid;
@@ -158,15 +183,15 @@
             overflow: hidden;
         }
 
-        *{
-            padding:0;
-            margin:0;
-            vertical-align:baseline;
-            list-style:none;
-            border:0;
-            text-decoration: none;
+        .wrapper-fechado{
+         display: grid;
+            grid-template-areas: "main main";
+            grid-template-columns: 300px 1fr;
+            height: 100vh;
+            overflow: hidden;
         }
-        
+
+        /*Sidebar aberta*/
         .sidebar{
             background-color: #333;
             height: 160vh;
@@ -232,7 +257,7 @@
                         <!-- Estrutura do nav option-->
                         <i class="far fa-bookmark" style="margin-right: 10px;"></i>
                         <span>Clilcavel expansivel</span>
-                        <span class="fs-6 spining"> <i class="fas fa-chevron-right"></i> </span>
+                        <span class="fs-6"> <i class="fas fa-chevron-right"></i> </span>
                         <!--Fim da estrutura e começo do collapsable-->
                         <div class="accordion-collapse collapse" id="collapseOne" data-bs-parent="#accordionExample">
                            <ul class="text-decoration-none">
@@ -280,7 +305,7 @@
                   <div class="nav-expandable-option">
                     <a onclick="dada(this)" id="testaae" role="button" class="text-decoration-none collapsed nav-option" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                        <!-- Estrutura do nav option-->
-                       <i class="far fa-bookmark" style="margin-right: 10px;"></i>
+                       <i class="far fa-map" style="margin-right: 10px;"></i>
                        <span>Clilcavel expansivel</span>
                        <span  class="fs-6"> <i class="fas fa-chevron-right spining"></i> </span>
                        <!--Fim da estrutura e começo do collapsable-->
@@ -430,7 +455,8 @@
        
     </nav>
     <main>
-        <p onclick="dada()">Hello world!</p>
+        <p onclick="fechar()">Fechar!</p>
+        
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
         </button>
