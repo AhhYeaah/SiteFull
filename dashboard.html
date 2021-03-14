@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script type="text/javascript">
+      function dada(element){
+
+       //Limpa todos as opçoes que estão abertas no momento
+         if($('.nav-option-active').length == 1) {
+               //Em seguida tem um timeout pra esperar a animação acabar
+               setTimeout(
+               function() 
+               {
+                  //Quando acabar, o resultado final é trocado com a setinha pra baixo
+                  $('.nav-option-active').find('span').find('svg').replaceWith('<svg class="svg-inline--fa fa-chevron-right fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>');          
+               }, 140);
+               $('.nav-option-active').find('span').find('svg').replaceWith('<svg class="svg-inline--fa fa-chevron-right fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>');          
+            //adicionar a classe de inativo
+            $('.nav-option-active').addClass("nav-option");
+            //remover a classe de ativo, a ordem é desse jeito pra poder ainda ter acesso a classe de ativo, assim saberei quai
+            $('.nav-option-active').removeClass("nav-option-active");
+            
+            
+        }
+        //Agora sim podemos mexer no elemento que foi passado
+         if($(element).attr('aria-expanded') === "true"){
+            //remover o estado de inativa
+            $(element).removeClass("nav-option");
+
+            //impedindo cliques adicionais
+            $(element).attr('onclick', 'return false');
+
+            //removendo a classe da setinha fechando caso isso ja não tenha acontecido
+            $(element).find('span').find('svg').removeClass("spining-closing");
+
+            //colocando a da setinha abrindo 
+            $(element).find('span').find('svg').addClass("spining-opening");
+
+            //Em seguida tem um timeout pra esperar a animação acabar
+            setTimeout(
+            function() 
+            {
+               //Quando acabar, o resultado final é trocado com a setinha pra baixo
+               $(element).find('span').find('svg').replaceWith('<svg class="svg-inline--fa fa-chevron-down fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg>');
+            }, 140);
+
+            //Em seguida, o link é ativado novamente
+            setTimeout(
+            function() 
+            {
+               $(element).attr("onclick", "dada(this)");
+            }, 300);
+
+            //Por ultimo, o elemento fica com o css de ativo
+            $(element).addClass("nav-option-active");
+
+        }else{
+           //remover o estado de ativo
+            $(element).removeClass("nav-option-active");
+            //impedindo cliques adicionais
+            $(element).attr('onclick', 'return false');
+            //removendo a classe da setinha abrindo caso isso ja não tenha acontecido
+            $(element).find('span').find('svg').removeClass("spining-opening");
+            //colocando a da setinha fechando
+            $(element).find('span').find('svg').addClass("spining-closing");
+            //Em seguida tem um timeout pra esperar a animação acabar
+            setTimeout(
+            function() 
+            {
+               //Quando acabar, o resultado final é trocado com a setinha pra cima
+               $(element).find('span').find('svg').replaceWith('<svg class="svg-inline--fa fa-chevron-right fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>');
+            }, 150);
+
+            //Em seguida o link é ativado novamente
+            setTimeout(
+            function() 
+            {
+               $(element).attr("onclick", "dada(this)");
+            }, 300);
+
+            //Por ultimo, o elemento fica com o css de ativo
+            $(element).addClass("nav-option");
+         }
+
+      }
+    </script>
+    <style>
+   @-webkit-keyframes spin { 
+        from { 
+            -webkit-transform: rotate(0deg); 
+        } to { 
+            -webkit-transform: rotate(90deg); 
+        }
+    }
+
+    .spining-opening{
+
+      -webkit-animation-name: spin;
+    -webkit-animation-duration: 150ms;
+    -webkit-animation-timing-function: linear;
+    }
+
+    @-webkit-keyframes spin-close { 
+        from { 
+            -webkit-transform: rotate(90deg); 
+        } to { 
+            -webkit-transform: rotate(0deg); 
+        }
+    }
+
+    .spining-closing{
+      -webkit-animation-name: spin-close;
+    -webkit-animation-duration: 150ms;
+    -webkit-animation-timing-function: linear;
+    }
+   
+        .sidebar {
+            color:#838383;
+        }
+
+        .color{
+           color: black;
+        }
+
+
+        .nav-option-active{
+            -webkit-user-select: none;
+            color:#bbb;
+        }
+
+
+        .nav-option-active:hover{
+            color:#bbb;
+        }
+
+        .nav-option{
+            -webkit-user-select: none;
+            color:#838383;
+        }
+
+        .nav-option:hover{
+            color:#bbb;
+            -webkit-transition: 0.5s
+        }
+
+        .wrapper{
+            display: grid;
+            grid-template-areas: "sidebar main";
+            grid-template-columns: 300px 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        *{
+            padding:0;
+            margin:0;
+            vertical-align:baseline;
+            list-style:none;
+            border:0;
+            text-decoration: none;
+        }
+        
+        .sidebar{
+            background-color: #333;
+            height: 160vh;
+            grid-area: sidebar;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+        }
+        .sidebar:hover{
+            overflow-y: auto;
+           
+        }
+
+        /* Let's get this party started */
+        ::-webkit-scrollbar {
+            width: 5px;
+            
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: rgba(161, 161, 161, 0.8); 
+        }
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background: rgba(255,0,0,0.4); 
+        }
+
+        main{
+            grid-area: main;
+            background-color: blueviolet;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <nav class="sidebar">
+       <section style="min-height: 100px; transform: rotate(0);"  class=" d-flex justify-content-center d-flex align-items-center ">
+          <a href="index.html" class="stretched-link text-decoration-none">
+             <div class="fs-3 text-light">
+                <i class="fas fa-book-open"></i> 
+                <span style="padding-left: 10px;">AppStack</span>
+             </div>
+          </a>
+       </section>
+
+       <section class="sidebar-body">
+         
+          <div class="accordion text-decoration-none"  id="accordionExample">
+             <ul class="fs-5">
+                <li class="fs-6">Itens </li>
+                <li>
+                   <div class="nav-expandable-option">
+                     <a onclick="dada(this)" id="testaae" role="button" class="text-decoration-none collapsed nav-option" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <!-- Estrutura do nav option-->
+                        <i class="far fa-bookmark" style="margin-right: 10px;"></i>
+                        <span>Clilcavel expansivel</span>
+                        <span class="fs-6 spining"> <i class="fas fa-chevron-right"></i> </span>
+                        <!--Fim da estrutura e começo do collapsable-->
+                        <div class="accordion-collapse collapse" id="collapseOne" data-bs-parent="#accordionExample">
+                           <ul class="text-decoration-none">
+                              <li>
+                                 <div>
+                                   <a href="index.html" class="text-decoration-none nav-option">
+                                   Clilcavel
+                                   </a>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                   <a href="index.html" class="text-decoration-none nav-option">
+                                   Clilcavel
+                                   </a>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                   <a href="index.html" class="text-decoration-none nav-option">
+                                   Clilcavel
+                                   </a>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                   <a href="index.html" class="text-decoration-none nav-option">
+                                   Clilcavel
+                                   </a>
+                                </div>
+                              </li>
+                              <li>
+                                <div>
+                                   <a href="index.html" class="text-decoration-none nav-option">
+                                   Clilcavel
+                                   </a>
+                                </div>
+
+                              </li>
+                           </ul>
+                     </a>
+                   </div>
+                </li>
+                <li>
+                  <div class="nav-expandable-option">
+                    <a onclick="dada(this)" id="testaae" role="button" class="text-decoration-none collapsed nav-option" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                       <!-- Estrutura do nav option-->
+                       <i class="far fa-bookmark" style="margin-right: 10px;"></i>
+                       <span>Clilcavel expansivel</span>
+                       <span  class="fs-6"> <i class="fas fa-chevron-right spining"></i> </span>
+                       <!--Fim da estrutura e começo do collapsable-->
+                       <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#accordionExample">
+                          <ul class="text-decoration-none">
+                             <li>
+                                <div>
+                                  <a href="index.html" class="text-decoration-none nav-option">
+                                  Clilcavel
+                                  </a>
+                               </div>
+                             </li>
+                             <li>
+                               <div>
+                                  <a href="index.html" class="text-decoration-none nav-option">
+                                  Clilcavel
+                                  </a>
+                               </div>
+                             </li>
+                             <li>
+                               <div>
+                                  <a href="index.html" class="text-decoration-none nav-option">
+                                  Clilcavel
+                                  </a>
+                               </div>
+                             </li>
+                             <li>
+                               <div>
+                                  <a href="index.html" class="text-decoration-none nav-option">
+                                  Clilcavel
+                                  </a>
+                               </div>
+                             </li>
+                             <li>
+                               <div>
+                                  <a href="index.html" class="text-decoration-none nav-option">
+                                  Clilcavel
+                                  </a>
+                               </div>
+                             </li>
+                          </ul>
+                    </a>
+                  </div>
+               </li>
+             </ul>
+            <!--
+         
+          <ul class="fs-5">
+             <li>
+                <div>
+                <a href="#collapseOne" class="text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Clilcavel expansivel
+                </a>
+                <div class="accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionExample">
+                <ul class="text-decoration-none">
+                   <li>
+                      <div>
+                        <a href="index.html" class="text-decoration-none">
+                        Clilcavel
+                        </a>
+                     </div>
+                   </li>
+                   <li>
+                     <div>
+                        <a href="index.html" class="text-decoration-none">
+                        Clilcavel
+                        </a>
+                     </div>
+                   </li>
+                   <li>
+                     <div>
+                        <a href="index.html" class="text-decoration-none">
+                        Clilcavel
+                        </a>
+                     </div>
+                   </li>
+                   <li>
+                     <div>
+                        <a href="index.html" class="text-decoration-none">
+                        Clilcavel
+                        </a>
+                     </div>
+                   </li>
+                   <li>
+                     <div>
+                        <a href="index.html" class="text-decoration-none">
+                        Clilcavel
+                        </a>
+                     </div>
+                   </li>
+                </ul>
+             </li>
+             <li>
+                <a href="#collapseTwo" class="text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                clilcavel expansivel
+                </a>
+                <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#accordionExample">
+                <ul>
+                   <li> item </li>
+                   <li> item </li>
+                   <li> item </li>
+                   <li> item </li>
+                   <li> item </li>
+                   <li> item </li>
+                   <div class="accordion" id="accordionExample2">
+                      <li>
+                         <a href="#collapseThree" class="text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                         clilcavel expansivel
+                         </a>
+                         <div class="accordion-collapse collapse" id="collapseThree"  data-bs-parent="#accordionExample2">
+                            <ul>
+                               <li> item </li>
+                               <li> item </li>
+                               <li> item </li>
+                               <li> item </li>
+                               <li> item </li>
+                               <li> item </li>
+                            </ul>
+                      </li>
+                      <li>
+                      <a href="#collapseFour" class="text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      clilcavel expansivel
+                      </a>
+                      <div class="accordion-collapse collapse" id="collapseFour"  data-bs-parent="#accordionExample2">
+                      <ul>
+                      <li> item </li>
+                      <li> item </li>
+                      <li> item </li>
+                      <li> item </li>
+                      <li> item </li>
+                      <li> item </li>
+                      </ul>
+                      </li>
+                      </div>
+                </ul>
+             </li>
+             <li>
+             item
+             </li>
+          </ul>
+          </div>
+         -->
+       </section>
+
+       <section class="sidebar-footer">
+       </section>
+       
+    </nav>
+    <main>
+        <p onclick="dada()">Hello world!</p>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                    ...
+                 </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+   </body>
+</html>
