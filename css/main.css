@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 
-* {
+/* ----------------------------------- INDEX ------------------------------------- */
+
+  /* CSS reset */
+  *{
     padding:0;
     margin:0;
     vertical-align:baseline;
@@ -16,7 +19,7 @@ body{
 
 .main-container{
     display: grid;
-    grid-template-rows: 13vh 150vh 40vh;
+    grid-template-rows: minmax(112px,13vh) 150vh 40vh;
     grid-template-areas: "header"
                          "main"
                          "footer";
@@ -28,7 +31,7 @@ body{
 header{
     grid-area: header;
     display: grid;
-    grid-template-rows: 5vh 8vh;
+    grid-template-rows: minmax(40px, 5vh) minmax(72px,8vh);
     grid-template-areas: "up-header"
                          "dw-header";
     background-color: blueviolet;
@@ -138,8 +141,9 @@ main{
     letter-spacing: 2px;
 }
 .carrousel img{ 
-    width: 817px;
-    height: 611px;
+    max-width:  1000px;
+    width: 100%;
+    height: auto;
 }
 
 .grid-characterist{
@@ -201,8 +205,4 @@ footer{
 
 .footer-social{
 
-}
-
-@media only screen and (max-width:550px){
-    
 }
